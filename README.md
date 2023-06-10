@@ -21,22 +21,43 @@ Tasks
 7. Design own convolutional layers
 8. Answer questions about the dataset
 
+Tasks
 
-## Training model
+- [ ] Preparation: Split dataset into a 80/20 Train/test split
 
-1. Load the data: You need to load the images from the respective train, validation, and test directories into memory. You can use a library like OpenCV or PIL to load the images. It's common to convert the images to a standardized size, such as 224x224 pixels, to ensure consistency during training.
+- [ ] Transfer learning: Use a imagenet pretrained VGG19 architecture, train the model and estimate the testset accuracy 
 
-2. Preprocess the data: Preprocessing steps may include resizing the images, normalizing pixel values, and applying any other necessary transformations. For instance, you can normalize the pixel values to a range of 0 to 1 by dividing them by 255. Additionally, you might consider applying data augmentation techniques like random rotations, flips, or zooms to increase the variability of your training data.
+- [ ] Data cleansing: Remove “bad” images from the dataset. Which did you remove? How many? Discuss results.
 
-3. Prepare labels: Assign appropriate labels to each image in your dataset. Since you are classifying lions, tigers, and cheetahs, you can assign labels like 0 for lions, 1 for tigers, and 2 for cheetahs. Ensure that the labels are consistent across your train, validation, and test sets.
+- [ ] Add data augmentation and train again, discuss results
+        - [ ] Random flip
 
-4. Split the data: If you haven't already split your downloaded dataset into train, validation, and test sets, you can do so now. As mentioned earlier, a common split is 70% for training, 15% for validation, and 15% for testing. Ensure that the data is shuffled before splitting to avoid any bias.
+        - [ ] Random contrast
 
-5. Build your image classifier: Now that your data is prepared, you can proceed to build your image classifier. You have several options for creating a model, including using popular deep learning frameworks like TensorFlow or PyTorch. You can choose a pre-existing architecture such as VGG, ResNet, or MobileNet, and fine-tune it for your specific classification task. Alternatively, you can build your own custom architecture.
+        - [ ] Random translation
 
-6. Train your model: Feed your prepared training data into the model and train it. Adjust hyperparameters like learning rate, batch size, and number of epochs to achieve the desired performance. Monitor the model's performance on the validation set to avoid overfitting.
+- [ ] Rebuild VGG19. After layer block4_conv4 (32, 32, 512):
 
-7. Evaluate the model: After training, evaluate the performance of your model using the test set. Calculate metrics like accuracy, precision, recall, and F1 score to assess the model's classification performance.
+- [ ] Add a naive inception layer (output filter size should be 512, each padding same, activations leaky relu)
 
-8. Fine-tune and iterate: If your model's performance is not satisfactory, you can try fine-tuning the hyperparameters, adjusting the architecture, or exploring different augmentation techniques to improve the results. Iterate on the training process until you achieve the desired performance.
+- [ ] Add conv layer (kernel 3x3,  filters 512, padding valid, stride 2, activation relu)
 
+- [ ] Add conv layer (kernel 1x1, filters 640, padding valid, stride 1, activation relu)
+
+- [ ] Freeze conv2 layers and before
+
+- [ ] Test a few of your own images and present the results
+
+- [ ] Answer the following questions:
+
+    - [ ] What accuracy can be achieved? What is the accuracy of the train vs. test set?
+
+    - [ ] On what infrastructure did you train it? What is the inference time?
+
+    - [ ] What are the number of parameters of the model?
+
+    - [ ] Which categories are most likely to be confused by the algorithm? Show results in a confusion matrix.
+
+
+
+Compare the results of the experiments.

@@ -61,7 +61,7 @@ normalize_images(train_dir)
 # resize images
 def resize_and_pad(image, target_shape):
     # Get the original image shape
-    height, width, channels = image.shape
+    height, width, channels = target_shape
 
     # Resize the image while maintaining the aspect ratio
     aspect_ratio = width / height
@@ -128,4 +128,42 @@ model.compile(optimizer=Adam(lr=0.001),
               metrics=['accuracy'])
 
 # Train the entire model (both pre-trained and new layers) using your labeled dataset
-model.fit(train_images, train_labels, epochs=10, batch_size=32, validation_data=(val_images, val_labels))
+#model.fit(train_images, train_labels, epochs=10, batch_size=32, validation_data=(val_images, val_labels))
+
+
+# Define the data generator for training data
+train_datagen = ImageDataGenerator(
+    rescale=1.0/255,  # Normalize pixel values to [0, 1]
+    rotation_range=20,  # Randomly rotate images within the range of 20 degrees
+    width_shift_range=0.2,  # Randomly shift the width of images by 20%
+    height_shift_range=0.2,  # Randomly shift the height of images by 20%
+    shear_range=0.2,  # Apply random shear transformations
+    zoom_range=0.2,  # Randomly zoom into images by 20%
+    horizontal_flip=True  # Randomly flip images horizontally
+)
+
+# Load the training data from the directory
+train_generator = train_datagen.flow_from_directory(
+    train_dir,  # Path to the directory containing the training data
+    target_size=(224, 224),  # Resize images to the desired size
+    batch_size=32,  # Number of images to include in each batch
+    class_mode='categorical'  # Type of labels (e.g., categorical, binary)
+)
+
+# Create an ImageDataGenerator for the validation data
+validation_datagen = ImageDataGenerator(rescale=1./255)
+
+# Create a generator for the validation data
+validation_generator = validation_datagen.flow_from_directory(
+    val_dir,
+    target_size=(224, 224),
+    batch_size=32,
+    class_mode='categorical'
+)
+
+# Train the model using the generator and validation data
+model.fit(
+    train_generator,
+    epochs=10,
+    validation_data=validation_generator
+)
