@@ -1,0 +1,10 @@
+__pycache__
+.ipynb_checkpoints
+.spyproject
+boxes/
+metadata/
+test/
+train/
+validation/
+explore_data.txt
+statistics.txt

@@ -1,0 +1,4 @@
+#!/bin/bash
+
+for f in $(find train/ -name '*augm*'); do rm $f; done
+
