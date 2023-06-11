@@ -38,15 +38,15 @@ Tasks
 
 - [ ] Rebuild VGG19. After layer block4_conv4 (32, 32, 512):
 
-- [ ] Add a naive inception layer (output filter size should be 512, each padding same, activations leaky relu)
+  - [x] Add a naive inception layer (output filter size should be 512, each padding same, activations leaky relu)
 
-- [ ] Add conv layer (kernel 3x3,  filters 512, padding valid, stride 2, activation relu)
+  - [x] Add conv layer (kernel 3x3,  filters 512, padding valid, stride 2, activation relu)
 
-- [ ] Add conv layer (kernel 1x1, filters 640, padding valid, stride 1, activation relu)
+  - [x] Add conv layer (kernel 1x1, filters 640, padding valid, stride 1, activation relu)
 
-- [ ] Freeze conv2 layers and before
+  - [x] Freeze conv2 layers and before
 
-- [ ] Test a few of your own images and present the results
+  - [ ] Test a few of your own images and present the results
 
 - [ ] Answer the following questions:
 
