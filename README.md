@@ -23,20 +23,17 @@ Tasks
 
 Tasks
 
-- [ ] Preparation: Split dataset into a 80/20 Train/test split
+- [x] Preparation: Split dataset into a 80/20 Train/test split
+- [x] Transfer learning: Use a imagenet pretrained VGG19 architecture, train the model and estimate the testset accuracy 
 
-- [ ] Transfer learning: Use a imagenet pretrained VGG19 architecture, train the model and estimate the testset accuracy 
+- [x] Data cleansing: Remove “bad” images from the dataset. Which did you remove? How many? Discuss results.
 
-- [ ] Data cleansing: Remove “bad” images from the dataset. Which did you remove? How many? Discuss results.
+- [x] Add data augmentation and train again, discuss results
+    - [x] Random flip
+    - [x] Random contrast
+    - [x] Random translation
 
-- [ ] Add data augmentation and train again, discuss results
-        - [ ] Random flip
-
-        - [ ] Random contrast
-
-        - [ ] Random translation
-
-- [ ] Rebuild VGG19. After layer block4_conv4 (32, 32, 512):
+- [x] Rebuild VGG19. After layer block4_conv4 (32, 32, 512):
 
   - [x] Add a naive inception layer (output filter size should be 512, each padding same, activations leaky relu)
 
@@ -46,18 +43,13 @@ Tasks
 
   - [x] Freeze conv2 layers and before
 
-  - [ ] Test a few of your own images and present the results
+  - [x] Test a few of your own images and present the results
 
 - [ ] Answer the following questions:
 
     - [ ] What accuracy can be achieved? What is the accuracy of the train vs. test set?
-
     - [ ] On what infrastructure did you train it? What is the inference time?
-
     - [ ] What are the number of parameters of the model?
-
     - [ ] Which categories are most likely to be confused by the algorithm? Show results in a confusion matrix.
 
-
-
-Compare the results of the experiments.
+-[ ] Compare the results of the experiments.
